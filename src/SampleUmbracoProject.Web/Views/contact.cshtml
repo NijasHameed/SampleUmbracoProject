@@ -1,0 +1,40 @@
+﻿@inherits UmbracoViewPage<SampleUmbracoProject.Models.ViewModels.BasePageViewModel>
+@{
+    Layout = "~/Views/Shared/master.cshtml";
+    var pageModel = Model.PageModel as Contact;
+    var submitted = false;
+    if (bool.TryParse(TempData["Success"]?.ToString() ?? "", out var success))
+    {
+        submitted = true;
+    }
+}
+@await Html.PartialAsync("~/Views/Partials/pageHeader.cshtml", Model.PageHeader);
+
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                @if(submitted)
+                {
+
+                    @if (success)
+                    {
+                        @pageModel.SuccessMessage
+                    }
+                    else
+                    {
+                        @pageModel.ErrorMessage
+                    }
+                }
+                else
+                {
+                    @pageModel.InstructionMessage
+                    <div class="my-5">
+                        @await Component.InvokeAsync("ContactForm")
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</main>

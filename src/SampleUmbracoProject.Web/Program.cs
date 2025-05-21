@@ -1,3 +1,6 @@
+using SampleUmbracoProject.Core.DI;
+using Umbraco.Cms.Core.Services;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.CreateUmbracoBuilder()
@@ -5,6 +8,7 @@ builder.CreateUmbracoBuilder()
     .AddWebsite()
     .AddDeliveryApi()
     .AddComposers()
+    .AddCustomServices()
     .Build();
 
 WebApplication app = builder.Build();

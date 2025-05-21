@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Infrastructure" Version="13.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="PageModels\" />
+  </ItemGroup>
+
 </Project>

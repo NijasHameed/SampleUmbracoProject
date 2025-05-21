@@ -1,0 +1,20 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BasePageViewModel>
+@using SampleUmbracoProject.Models.PageModels
+@using SampleUmbracoProject.Models.ViewModels
+﻿@{
+    Layout = "~/Views/Shared/master.cshtml";
+}
+
+@await Html.PartialAsync("~/Views/Partials/pageHeader.cshtml", Model.PageHeader)
+@if (Model.HomePageModel.ContentRows != null)
+{
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    @Html.GetBlockListHtml(Model.HomePageModel.ContentRows)
+                </div>
+            </div>
+        </div>
+    </article>
+}
