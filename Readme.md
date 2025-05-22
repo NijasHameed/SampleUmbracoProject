@@ -1,6 +1,6 @@
 ## Run Book
 
-Run and login to umbraco backoffice using below details
+### Run and login to umbraco backoffice using below details
 
 https://localhost:44322/
 
@@ -8,7 +8,7 @@ username:Admin
 
 password:passpass!!
 
-Access portel mentioned below with the credentiails mentioned, To see the submitted entries emails
+### Please use the credentials provided below to access the portal and review all submitted form entries and associated email notifications
 
 https://mailosaur.com/app/servers/hqzcoovx/messages/inbox
 
