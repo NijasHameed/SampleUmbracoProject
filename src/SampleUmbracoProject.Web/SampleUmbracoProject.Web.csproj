@@ -4,6 +4,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="umbraco\Data\Umbraco.sqlite.db" />
+    <None Include="umbraco\Data\Umbraco.sqlite.db-shm" />
+    <None Include="umbraco\Data\Umbraco.sqlite.db-wal" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Clean" Version="4.1.0" />
