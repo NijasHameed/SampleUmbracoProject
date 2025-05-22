@@ -46,18 +46,12 @@ namespace SampleUmbracoProject.Core.Services
                 var homePage = current.AncestorOrSelf(1) as Home;
                 var currentCulture = Thread.CurrentThread.CurrentCulture.Name;
                 var navigation = _navigationService.GetNavigation(current, homePage);
-                //var logo = new MediaItem
-                //{
-                //    Url =homePage.MainLogo.Url(),
-                //    AltText = homePage.AltText
-                //};
                 var baseModel = new BasePageViewModel(current)
                 {
-                    //Logo = logo,
                     Navigation = navigation,
                     HomePageUrl = homePage.Url(),
                     HomePageModel = homePage,
-                    PageHeader=GetPageHeader(homePage),
+                    PageHeader=GetPageHeader(current),
                 };
                 return baseModel;
             }
@@ -75,16 +69,16 @@ namespace SampleUmbracoProject.Core.Services
         }
         #endregion
         #region Footer - Global Content against Culture
-        PageHeaderViewModel GetPageHeader(Home homePage)
+        PageHeaderViewModel GetPageHeader(IPublishedContent page)
         {
             try
             {
                 return new PageHeaderViewModel
                 {
-                   BackgroundImage = homePage.MainImage,
-                   Name = homePage.Name,
-                   Subtitle = homePage.Subtitle,
-                   Title = homePage.Title,
+                    BackgroundImage = page.Value<IPublishedContent>("mainImage"),
+                    Name = page.Name,
+                    Subtitle = page.Value<string>("subtitle"),
+                    Title = page.Value<string>("title"),
                 };
             }
             catch (Exception ex)
