@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Notifications;
+using SampleUmbracoProject.Core.Repositories.Interfaces;
+using SampleUmbracoProject.Core.Repositories;
 
 namespace SampleUmbracoProject.Core.DI
 {
@@ -19,6 +21,8 @@ namespace SampleUmbracoProject.Core.DI
             builder.Services.AddSingleton<IEmailService, EmailService>();
             builder.Services.AddSingleton<ISiteService, SiteService>();
             builder.Services.AddSingleton<INavigationService, NavigationService>();
+            builder.Services.AddTransient<IContactFormRepository, ContactFormRepository>();
+            builder.Services.AddTransient<IContactFormService, ContactFormService>();
             return builder;
 
         }

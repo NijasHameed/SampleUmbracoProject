@@ -10,7 +10,7 @@
 }
 else
 {
-    <form asp-controller="ContactForm" asp-action="SubmitForm" method="post" class="contact-form" novalidate>
+    <form asp-controller="ContactFormSurface" asp-action="SubmitForm" method="post" class="contact-form" novalidate>
         @Html.AntiForgeryToken()
 
         @if (!ViewData.ModelState.IsValid)

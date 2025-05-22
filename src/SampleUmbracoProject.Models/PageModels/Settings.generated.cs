@@ -20,7 +20,7 @@ namespace SampleUmbracoProject.Models.PageModels
 {
 	/// <summary>Settings</summary>
 	[PublishedModel("settings")]
-	public partial class Settings : PublishedContentModel
+	public partial class Settings : PublishedContentModel, IEmailSettings
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -50,11 +50,59 @@ namespace SampleUmbracoProject.Models.PageModels
 		// properties
 
 		///<summary>
+		/// Admin Email Subject
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.8.1+dcbbed4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("emailSubject")]
+		public virtual string EmailSubject => this.Value<string>(_publishedValueFallback, "emailSubject");
+
+		///<summary>
 		/// Main Nav
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.8.1+dcbbed4")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("mainNav")]
 		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> MainNav => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link>>(_publishedValueFallback, "mainNav");
+
+		///<summary>
+		/// Recipient Email Subject
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.8.1+dcbbed4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("recipientEmailSubject")]
+		public virtual string RecipientEmailSubject => this.Value<string>(_publishedValueFallback, "recipientEmailSubject");
+
+		///<summary>
+		/// Admin Email Body
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.8.1+dcbbed4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("adminEmailBody")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString AdminEmailBody => global::SampleUmbracoProject.Models.PageModels.EmailSettings.GetAdminEmailBody(this, _publishedValueFallback);
+
+		///<summary>
+		/// bcc
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.8.1+dcbbed4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("bcc")]
+		public virtual string Bcc => global::SampleUmbracoProject.Models.PageModels.EmailSettings.GetBcc(this, _publishedValueFallback);
+
+		///<summary>
+		/// cc
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.8.1+dcbbed4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("cC")]
+		public virtual string CC => global::SampleUmbracoProject.Models.PageModels.EmailSettings.GetCC(this, _publishedValueFallback);
+
+		///<summary>
+		/// Recipient Email Body
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.8.1+dcbbed4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("recipientEmailBody")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString RecipientEmailBody => global::SampleUmbracoProject.Models.PageModels.EmailSettings.GetRecipientEmailBody(this, _publishedValueFallback);
 	}
 }

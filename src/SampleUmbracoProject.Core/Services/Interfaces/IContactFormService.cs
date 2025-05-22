@@ -2,8 +2,8 @@
 
 namespace SampleUmbracoProject.Core.Services.Interfaces
 {
-    public interface IEmailService
+    public interface IContactFormService
     {
-        void SendFormEmail(ContactFormModel model,bool isAdminEmail= false);
+        void SaveContactFormSubmission(ContactFormModel model);
     }
 }

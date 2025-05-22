@@ -19,6 +19,8 @@ using Umbraco.Cms.Core;
 using Umbraco.Extensions;
 using Microsoft.Extensions.Configuration;
 using SampleUmbracoProject.Core.Services.Interfaces;
+using SampleUmbracoProject.Core.Services;
+using Microsoft.Extensions.Logging;
 
 namespace SampleUmbracoProject.Core.Controllers
 {
@@ -27,6 +29,8 @@ namespace SampleUmbracoProject.Core.Controllers
         private readonly IPublishedContentQuery _publishedContentQuery;
         private readonly IVariationContextAccessor _variationContextAccessor;
         private readonly IEmailService _emailService;
+        private readonly IContactFormService _contactFormService;
+        private readonly ILogger<ContactFormSurfaceController> _logger;
         public ContactFormSurfaceController(
         IUmbracoContextAccessor umbracoContextAccessor,
         IUmbracoDatabaseFactory databaseFactory,
@@ -36,12 +40,16 @@ namespace SampleUmbracoProject.Core.Controllers
         IPublishedUrlProvider publishedUrlProvider,
         IPublishedContentQuery publishedContentQuery,
         IVariationContextAccessor variationContextAccessor,
-        IEmailService emailService)
+        IEmailService emailService,
+        IContactFormService contactFormService,
+        ILogger<ContactFormSurfaceController> logger)
         : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
         {
             _publishedContentQuery = publishedContentQuery;
             _variationContextAccessor = variationContextAccessor;
             _emailService = emailService;
+            _contactFormService = contactFormService;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -55,7 +63,9 @@ namespace SampleUmbracoProject.Core.Controllers
 
             try
             {
-                _emailService.SendFormEmail(model);
+                _contactFormService.SaveContactFormSubmission(model);
+                _emailService.SendFormEmail(model,isAdminEmail:true);
+                _emailService.SendFormEmail(model, isAdminEmail: false);
 
                 var thankYouPage = _publishedContentQuery.ContentAtRoot()
                     .FirstOrDefault()?
@@ -70,9 +80,10 @@ namespace SampleUmbracoProject.Core.Controllers
                 ViewData["FormSuccess"] = true;
                 return View("Default", model);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 ModelState.AddModelError("", "An error occurred while submitting the form. Please try again later.");
+                _logger.LogError(e, "SubmitForm | Exception: {0} | Message: {1}", e.InnerException != null ? e.InnerException.ToString() : "", e.Message != null ? e.Message.ToString() : "");
                 return View("Default", model);
             }
         }
