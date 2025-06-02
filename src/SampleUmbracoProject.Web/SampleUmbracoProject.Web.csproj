@@ -5,6 +5,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\MyPlugin\BackOffice\login-types.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="App_Plugins\MyPlugin\BackOffice\my-external-login.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="umbraco\Data\Umbraco.sqlite.db" />
     <None Include="umbraco\Data\Umbraco.sqlite.db-shm" />
     <None Include="umbraco\Data\Umbraco.sqlite.db-wal" />

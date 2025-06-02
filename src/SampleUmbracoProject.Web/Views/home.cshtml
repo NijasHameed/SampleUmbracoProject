@@ -6,6 +6,14 @@
 }
 
 @await Html.PartialAsync("~/Views/Partials/pageHeader.cshtml", Model.PageHeader)
+<form asp-controller="Login" asp-action="Login" method="post" class="contact-form" novalidate>
+    
+    <button type="submit" class="btn btn-primary">Login with PingID</button>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 @if (Model.HomePageModel.ContentRows != null)
 {
     <article>
