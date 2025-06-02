@@ -55,7 +55,7 @@ namespace SampleUmbracoProject.Core.Controllers
         public IActionResult Login()
         {
             //TODO: specify the SAML provider url here, aka "Endpoint"
-            var samlEndpoint = "https://auth.pingone.com.au/f5c7aad0-59a9-4701-b8d4-d8895353ff03/saml20/idp/sso";
+            var samlEndpoint = "";
             var request = new AuthRequest(
                 "umb-sso",
                 "http://localhost:5800/Auth"
